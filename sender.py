@@ -4,50 +4,39 @@ import subprocess
 import time
 import sys
 
-# Lista dei tipi di messaggio supportati
-supported_apps = ["ca", "denm", "cpm"]
-
-def send_message(app_type):
-    """Invia un singolo tipo di messaggio CAM."""
+def send_cam_messages():
+    """Invia messaggi CAM per un periodo di tempo fisso."""
     command = [
-        "home/ubuntu/vanetza/build/bin/socktap",
+        # Assicurati che il percorso a socktap sia corretto.
+        # Usa il percorso assoluto per evitare errori.
+        "/home/ubuntu/vanetza/build/bin/socktap",
         "--interface=lo",
-        f"--applications={app_type}",
-        f"--{app_type}-interval=1000", # Invia un pacchetto ogni secondo
+        "--applications=ca",
+        "--cam-interval=1000", # Invia un pacchetto ogni secondo
         "--mac-address=00:11:22:33:44:55",
     ]
     
-    print(f"Invio di messaggi {app_type.upper()} avviato. Premi Ctrl+C per tornare al menu.")
+    print("Avvio dell'invio di messaggi CAM. I messaggi verranno inviati per 10 secondi.")
+    print("Premi Ctrl+C in qualsiasi momento per terminare l'invio.")
     
     try:
+        # Avvia il processo in background
         process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
-        # Il processo rimane attivo per 5 secondi, inviando 5 messaggi
-        time.sleep(5)
+        
+        # Aspetta 10 secondi mentre i messaggi vengono inviati
+        time.sleep(10)
+        
+        print("\nInvio di messaggi completato.")
+    except FileNotFoundError:
+        print("Errore: Eseguibile socktap non trovato. Assicurati che il percorso sia corretto.")
     except KeyboardInterrupt:
-        print("\nTerminazione dell'invio...")
+        print("\nTerminazione dell'invio manuale...")
+    except Exception as e:
+        print(f"Si è verificato un errore: {e}")
     finally:
+        # Assicura che il processo venga terminato
         if 'process' in locals() and process.poll() is None:
             process.kill()
 
-def main():
-    while True:
-        print("\n--- Test mittente Vanetza ---")
-        print("Quale tipo di messaggio vuoi inviare?")
-        print("Tipi disponibili: ca, denm, cpm")
-        print("Premi 0 per uscire.")
-        
-        user_input = input("Inserisci un tipo di messaggio (es. ca): ").lower().strip()
-        
-        if user_input == "0":
-            print("Uscita dal programma.")
-            break
-        elif user_input in supported_apps:
-            send_message(user_input)
-        else:
-            print(f"Errore: tipo di messaggio '{user_input}' non supportato. Riprova.")
-
 if __name__ == "__main__":
-    try:
-        main()
-    except KeyboardInterrupt:
-        print("\nProgramma terminato.")
+    send_cam_messages()
