@@ -9,7 +9,7 @@ def send_cam_messages():
     command = [
         # Assicurati che il percorso a socktap sia corretto.
         # Usa il percorso assoluto per evitare errori.
-        "/home/ubuntu/vanetza/build/bin/socktap",
+        "../vanetza/build/bin/socktap",
         "--interface=lo",
         "--applications=ca",
         "--cam-interval=1000", # Invia un pacchetto ogni secondo

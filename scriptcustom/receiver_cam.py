@@ -5,7 +5,7 @@ import sys
 
 def main():
     socktap_command = [
-        "/home/ubuntu/vanetza/build/bin/socktap",
+        "../vanetza/build/bin/socktap",
         "--interface=lo",
         "--applications=ca",
         "--mac-address=00:11:22:33:44:56",
