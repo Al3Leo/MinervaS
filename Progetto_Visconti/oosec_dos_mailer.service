@@ -1,0 +1,12 @@
+[Unit]
+Description=OSSEC DoS Mailer
+After=network.target
+
+[Service]
+ExecStart=/var/ossec/active-response/bin/ossec_dos_mailer.sh
+Restart=always
+User=root
+Group=ossec
+
+[Install]
+WantedBy=multi-user.target
