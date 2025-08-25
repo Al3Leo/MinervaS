@@ -3,7 +3,7 @@ import subprocess
 import random
 import time
 
-SOCKTAP_BIN = "./bin/socktap"  # percorso binario socktap
+SOCKTAP_BIN = "./bin/socktap"  # percorso socktap
 INTERFACE = "ens37"
 
 # Range possibili per i parametri
@@ -25,20 +25,17 @@ def main():
             "--positioning", "static",
             "--latitude", str(lat),
             "--longitude", str(lon),
-            "--cam-interval", str(500)
+            "--cam-interval", str(50)
         ]
-        print(f"[INFO] Avvio socktap: lat={lat}, lon={lon}, interval= 500 ms")
+        print(f"[INFO] Avvio socktap: lat={lat}, lon={lon}, interval= 50 ms")
         proc = subprocess.Popen(cmd)
 
-        # lascio girare per N secondi
         time.sleep(DURATION_SEC)
 
-        # interrompo il processo
         proc.terminate()
         proc.wait()
         print("[INFO] Socktap terminato.\n")
 
-        # piccola pausa prima del prossimo
         time.sleep(1)
 
 if __name__ == "__main__":
