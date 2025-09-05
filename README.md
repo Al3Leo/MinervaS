@@ -17,10 +17,10 @@ Il progetto è pensato per **OBU virtuali o simulatori**, ma può essere adattat
 ---
 
 ## 🛠️ Struttura
-MinervaS/
-├─ scriptcustom/      # Script Python per generazione e ricezione CAM/DENM
-├─ vanetza.tar.gz/             # vanetza pre buildato per ubuntu - per fare una build pulita segui l'help ufficiale sui siti relativi
-└─ README.md
+- MinervaS/
+- ├─ scriptcustom/      # Script Python per generazione e ricezione CAM/DENM
+- ├─ vanetza.tar.gz/             # vanetza pre buildato per ubuntu - per fare una build pulita segui l'help ufficiale sui siti relativi
+- └─ README.md
 
 ---
 
@@ -45,8 +45,8 @@ Ogni messaggio può essere personalizzato in base a latitudine, longitudine, gra
 ⸻
 
 💡 Note
-	•	Gli script sono compatibili con Python 3.
-	•	Lo script di generazione può essere eseguito in background e chiudersi automaticamente dopo un tempo definito (di default ho impostato 10 sec ma consiglio di aumentare).
+	- •	Gli script sono compatibili con Python 3.
+	- •	Lo script di generazione può essere eseguito in background e chiudersi automaticamente dopo un tempo definito (di default ho impostato 10 sec ma consiglio di aumentare).
 
 ⸻
 
