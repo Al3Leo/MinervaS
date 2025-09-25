@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Adaptive UDP Sender con KNN
+Adaptive Sender con KNN
 ---------------------------
 Questo script invia pacchetti UDP (CAM) a un receiver e regola
 dinamicamente l'intervallo di invio usando un classificatore KNN
